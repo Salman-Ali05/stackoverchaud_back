@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const { MONGODB_URI } = require('../utils/secrets');
+const { MONGO_URI } = require('../utils/secrets');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(MONGODB_URI, {
+        await mongoose.connect(MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
