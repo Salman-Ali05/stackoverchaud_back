@@ -1,13 +1,12 @@
 require('dotenv').config();
 
 const {
-    PORT,
-    MONGODB_URI,
+    MONGO_URI,
     JWT_SECRET_KEY
 } = process.env;
 
 const requiredCredentials = {
-    MONGODB_URI,
+    MONGO_URI,
     JWT_SECRET_KEY
 };
 
@@ -19,7 +18,6 @@ for (const [key, value] of Object.entries(requiredCredentials)) {
 }
 
 module.exports = {
-    PORT: PORT || 5000,
-    MONGODB_URI,
+    MONGO_URI,
     JWT_SECRET_KEY
 };
