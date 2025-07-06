@@ -14,40 +14,6 @@ const authorizeRoles = require('../middlewares/roles');
 /**
  * @swagger
  * /users:
- *   get:
- *     summary: Récupérer tous les utilisateurs
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Liste des utilisateurs
- */
-router.get('/', verifyToken, controller.getAllUsers);
-
-/**
- * @swagger
- * /users/{id}:
- *   get:
- *     summary: Obtenir un utilisateur par ID
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Détails de l'utilisateur
- */
-router.get('/:id', verifyToken, controller.getUserById);
-
-/**
- * @swagger
- * /users:
  *   post:
  *     summary: Créer un utilisateur
  *     tags: [Users]
@@ -109,6 +75,40 @@ router.post('/', controller.createUser);
 router.post('/login', controller.login);
 
 router.use(verifyToken, authorizeRoles("admin"));
+
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Récupérer tous les utilisateurs
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Liste des utilisateurs
+ */
+router.get('/', controller.getAllUsers);
+
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Obtenir un utilisateur par ID
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Détails de l'utilisateur
+ */
+router.get('/:id', controller.getUserById);
 
 /**
  * @swagger
